@@ -1,0 +1,112 @@
+<div >
+  <table border="1">
+      <tr>
+        <th><a href="#" (click)="sort('id')">Id</a></th>
+        <th><a href="#" (click)="sort('title')">Title</a></th>
+        <th><a href="#" (click)="sort('author')">Author</a></th>
+        <th><a href="#" (click)="sort('publishYear')">Publish Year</a></th>
+      </tr>
+      <tr>
+          <td><input type="text" #id name="id" placeholder="Search by Id" (keyup)="search(id, 'id')"/></td>
+          <td><input type="text" #title name="title" placeholder="Search by title" (keyup)="search(title, 'title')"/></td>
+          <td><input type="text" #author name="author" placeholder="Search by author" (keyup)="search(author, 'author')"/></td>
+          <td><input type="text" #year name="year" placeholder="Search by year" (keyup)="search(year, 'publishYear')"/></td>
+      </tr>
+      <!-- <tr *ngFor="let book of filteredBooks">
+          <td>{{book.id}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.publishYear}}</td>
+      </tr> -->
+
+    <span *ngIf="searchFlag; then condition1 else condition2"></span>
+    <ng-template #condition1>
+        <tr *ngFor="let book of filteredBooks">
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.publishYear}}</td>
+        </tr>
+    </ng-template>
+    <ng-template #condition2>
+        <tr *ngFor="let book of books">
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.publishYear}}</td>
+            <td><button (click)="delete(book.id)">Delete</button></td>
+            <td><button (click)="edit(book.id)">Update</button></td>
+        </tr>
+    </ng-template>
+  </table>
+</div>
+<div>
+    <h3>Add Books</h3>
+    <table>
+      <tr>
+        <td>Id</td>
+        <td>
+          <input type="text" #eid name="id" >
+        </td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td>
+          <input type="text" #ename name="title" >
+        </td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>
+          <input type="text" #esal name="author" >
+        </td>
+      </tr>
+      <tr>
+        <td>Publish Year</td>
+        <td>
+          <input type="text" #edep name="publishYear" >
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="button" name="add" (click)="add(eid,ename,esal,edep)">Add Books</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <h3>Edit Books</h3>
+    <table>
+      <tr>
+        <td>Id</td>
+        <td>
+          <input type="text" #eid1 name="id" [value]="editItem.id">
+        </td>
+      </tr>
+      <tr>
+        <td>Title</td>
+        <td>
+          <input type="text" #ename1 name="title" [value]="editItem.title">
+        </td>
+      </tr>
+      <tr>
+        <td>Author</td>
+        <td>
+          <input type="text" #esal1 name="author" [value]="editItem.author">
+        </td>
+      </tr>
+      <tr>
+        <td>PublishYear</td>
+        <td>
+          <input type="text" #edep1 name="publishYear" [value]="editItem.publishYear">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="button" name="update" (click)="update(eid1,ename1,esal1,edep1)">Update Book</button>
+        </td>
+      </tr>
+
+    
+
+
